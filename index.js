@@ -2,6 +2,8 @@
 let sec = 0;
 let min = 0;
 let hour = 0;
+let mil = 0;
+let displaymil =0;
 let displaysec = 0;
 let displaymin = 0;
 let displayhour = 0;
@@ -10,9 +12,18 @@ let clicked = false;
 
 
 stopwatch = () => {
-    ++sec;
+    ++mil;
+    // ++sec;
+    incresesmil();
     incresesec();
     incresemin();
+    // if(mil)
+    if(mil <10){
+        displaymil = "0" + mil.toString();
+
+    }else{
+        displaymil = mil;
+    }
     if(sec < 10){
         displaysec = "0" + sec.toString();
     }else
@@ -28,8 +39,15 @@ stopwatch = () => {
     displayhour = hour;
     }
 
-    document.getElementById("display").innerHTML = displayhour + ":" + displaymin + ":" + displaysec;
+    document.getElementById("display").innerHTML = displayhour + ":" + displaymin + ":" + displaysec+ ":" + displaymil;
 
+}
+incresesmil = () => {
+    if(mil/100 === 1){
+        mil -= 100;
+        sec += 1;
+       
+    }
 }
 incresesec = () => {
     if(sec/60 === 1){
@@ -47,7 +65,7 @@ incresemin = () =>{
 start = () => {
 if(clicked == false){
   
-timer = window.setInterval(stopwatch, 1000);
+timer = window.setInterval(stopwatch, 10);
 clicked = true;
 document.querySelector('#started').setAttribute('disabled','true');
 document.querySelector('#paused').removeAttribute('disabled');
@@ -67,7 +85,7 @@ pause = () => {
 }
 function continued(){
     if(clicked == false){
-        timer = window.setInterval(stopwatch, 1000);
+        timer = window.setInterval(stopwatch, 10);
         clicked = true;
         document.querySelector('#paused').removeAttribute('value');
         document.querySelector('#paused').setAttribute('value','Pause');
@@ -82,7 +100,8 @@ reset = () =>{
     sec = 0;
     min = 0;
     hour = 0;
-    document.getElementById('display').innerHTML = "00:00:00";
+    mil=0;
+    document.getElementById('display').innerHTML = "00:00:00:00";
    window.clearInterval(timer);
    document.querySelector('#started').removeAttribute("disabled");
    document.querySelector('#paused').removeAttribute('value');
