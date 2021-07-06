@@ -10,15 +10,17 @@
     <title>StopWatch</title>
 </head>
 <body>
-    <h1 id="header">StopWatch</h1>
+    <!-- <h1 id="header">StopWatch</h1> -->
     <hr>
-    <div id="display">00:00:00</div>
+    <div class="main">
+    <div id="display">00:00:00:00</div>
     
     <div id="buttons">
         <input type="button" id="started" class="lastrow" value="Start" onclick="start()">
         <input type="button" id="paused" class="lastrow" value="Pause" onclick="pause()" disabled>
         <input type="button" id="reseted" class="lastrow" value="Reset" onclick="reset()" disabled>
     </div>
+</div>
    <script type="text/javascript" src="./index.js"></script>
 </body>
 </html>
